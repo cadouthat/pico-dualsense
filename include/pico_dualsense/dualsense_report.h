@@ -8,7 +8,7 @@
 constexpr uint8_t DUALSENSE_INPUT_REPORT_HEADER = (HID_MESSAGE_TYPE_DATA << 4) | HID_REPORT_TYPE_INPUT;
 constexpr uint8_t DUALSENSE_INPUT_REPORT_ID = 0x01;
 
-enum dualsense_dpad_ordinal {
+enum dualsense_dpad_ordinal_t {
   DUALSENSE_DPAD_UP = 0,
   DUALSENSE_DPAD_UP_RIGHT,
   DUALSENSE_DPAD_RIGHT,
@@ -17,6 +17,7 @@ enum dualsense_dpad_ordinal {
   DUALSENSE_DPAD_DOWN_LEFT,
   DUALSENSE_DPAD_LEFT,
   DUALSENSE_DPAD_UP_LEFT,
+  DUALSENSE_DPAD_NONE,
 };
 
 constexpr uint16_t DUALSENSE_BUTTON_MASK_DPAD = 0b1111;

@@ -19,8 +19,23 @@ class DualsenseParser {
   double leftTrigger();
   double rightTrigger();
 
+  bool squarePressed();
   bool crossPressed();
+  bool circlePressed();
   bool trianglePressed();
+  bool L1Pressed();
+  bool R1Pressed();
+  bool L2Pressed();
+  bool R2Pressed();
+  bool sharePressed();
+  bool optionsPressed();
+  bool L3Pressed();
+  bool R3Pressed();
+
+  dualsense_dpad_ordinal_t dpad();
+
+  bool PSPressed();
+  bool touchpadPressed();
 
  private:
   volatile dualsense_input_report last_report;

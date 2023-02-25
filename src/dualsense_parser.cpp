@@ -45,8 +45,29 @@ double DualsenseParser::rightStickY() { return getAnalog(last_report.right_stick
 double DualsenseParser::leftTrigger() { return getAnalogUnsigned(last_report.left_trigger); }
 double DualsenseParser::rightTrigger() { return getAnalogUnsigned(last_report.right_trigger); }
 
+bool DualsenseParser::squarePressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_SQUARE; }
 bool DualsenseParser::crossPressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_CROSS; }
+bool DualsenseParser::circlePressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_CIRCLE; }
 bool DualsenseParser::trianglePressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_TRIANGLE; }
+bool DualsenseParser::L1Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_L1; }
+bool DualsenseParser::R1Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_R1; }
+bool DualsenseParser::L2Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_L2; }
+bool DualsenseParser::R2Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_R2; }
+bool DualsenseParser::sharePressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_SHARE; }
+bool DualsenseParser::optionsPressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_OPTIONS; }
+bool DualsenseParser::L3Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_L3; }
+bool DualsenseParser::R3Pressed() { return last_report.buttons & DUALSENSE_BUTTON_BIT_R3; }
+
+dualsense_dpad_ordinal_t DualsenseParser::dpad() {
+  uint16_t ordinal = last_report.buttons & DUALSENSE_BUTTON_MASK_DPAD;
+  if (ordinal >= DUALSENSE_DPAD_NONE) {
+    return DUALSENSE_DPAD_NONE;
+  }
+  return (dualsense_dpad_ordinal_t)ordinal;
+}
+
+bool DualsenseParser::PSPressed() { return last_report.ps_buttons & DUALSENSE_PS_BUTTON_BIT_PS; }
+bool DualsenseParser::touchpadPressed() { return last_report.ps_buttons & DUALSENSE_PS_BUTTON_BIT_TOUCHPAD; }
 
 void DualsenseParser::writeReport(const void* data) {
   const uint8_t* src = (const uint8_t*)data;

@@ -32,9 +32,8 @@ uint32_t DualsenseParser::reportAgeMs() {
   if (!hasReport()) {
     return UINT32_MAX;
   }
-  // Grab a snapshot of the volatile value in a single operation
+  // Grab a snapshot of the volatile value, to ensure it does not update after we fetch the time
   uint32_t last_ms = last_report_ms;
-  // Now the local var can be used safely in subtraction
   return to_ms_since_boot(get_absolute_time()) - last_ms;
 }
 

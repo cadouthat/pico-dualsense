@@ -21,5 +21,4 @@ target_link_libraries(pico_dualsense
   pico_stdlib
   pico_btstack_ble
   pico_btstack_classic
-  pico_btstack_cyw43
 )

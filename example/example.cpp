@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "btstack.h"
+#include "pico/cyw43_arch.h"
 #include "pico/stdlib.h"
 #include "pico/time.h"
 
@@ -12,6 +13,11 @@ constexpr const char* REMOTE_ADDR_STRING = "FF:FF:FF:FF:FF:FF"; // YOUR CONTROLL
 
 int main() {
   stdio_init_all();
+
+  if (cyw43_arch_init() != 0) {
+    printf("cyw43_arch_init failed\n");
+    while (1) tight_loop_contents();
+  }
 
   if (!dualsense_bluetooth_init()) {
     printf("Failed to init bluetooth\n");

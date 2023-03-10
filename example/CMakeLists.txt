@@ -19,6 +19,8 @@ pico_enable_stdio_usb(example 1)
 
 target_link_libraries(example
   pico_stdlib
+  pico_btstack_cyw43
+  pico_cyw43_arch_none
   pico_dualsense
 )
 

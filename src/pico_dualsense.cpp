@@ -4,7 +4,6 @@
 #include <stdio.h>
 
 #include "btstack.h"
-#include "pico/cyw43_arch.h"
 
 #include "pico_dualsense/dualsense_parser.h"
 #include "pico_dualsense/dualsense_hci.h"
@@ -17,11 +16,6 @@ void dualsense_interrupt_report_handler(uint8_t *packet, uint16_t size) {
 }
 
 bool dualsense_bluetooth_init() {
-  // Assumes that cyw43 has been initialized if cyw43_arch_async_context() is non-null
-  if (!cyw43_arch_async_context() && cyw43_arch_init() != 0) {
-    return false;
-  }
-
   sm_init();
   sm_set_io_capabilities(IO_CAPABILITY_NO_INPUT_NO_OUTPUT);
 

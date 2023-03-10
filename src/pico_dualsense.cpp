@@ -17,7 +17,8 @@ void dualsense_interrupt_report_handler(uint8_t *packet, uint16_t size) {
 }
 
 bool dualsense_bluetooth_init() {
-  if (cyw43_arch_init()) {
+  // Assumes that cyw43 has been initialized if cyw43_arch_async_context() is non-null
+  if (!cyw43_arch_async_context() && cyw43_arch_init() != 0) {
     return false;
   }
 

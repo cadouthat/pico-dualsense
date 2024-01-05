@@ -10,6 +10,8 @@ class DualsenseParser {
   bool parseReport(uint8_t *packet, uint16_t size);
 
   bool hasReport();
+  // Warning: do not use for one-liner age computation (e.g. `millis() - getFrameTimeMs()`) to avoid overflow
+  uint32_t reportTimeMs();
   uint32_t reportAgeMs();
 
   double leftStickX();

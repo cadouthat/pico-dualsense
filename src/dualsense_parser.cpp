@@ -28,6 +28,7 @@ bool DualsenseParser::parseReport(uint8_t *packet, uint16_t size) {
 }
 
 bool DualsenseParser::hasReport() { return last_report.header == DUALSENSE_INPUT_REPORT_HEADER; }
+uint32_t DualsenseParser::reportTimeMs() { return last_report_ms; }
 uint32_t DualsenseParser::reportAgeMs() {
   if (!hasReport()) {
     return UINT32_MAX;

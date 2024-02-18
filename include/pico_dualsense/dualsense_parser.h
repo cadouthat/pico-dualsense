@@ -10,10 +10,10 @@ class DualsenseParser {
   bool parseReport(uint8_t *packet, uint16_t size);
 
   bool hasReport();
-  // Warning: do not use for one-liner age computation (e.g. `millis() - getFrameTimeMs()`). millis() may be
-  // called first, and getFrameTimeMs() may return a greater value leading to overflow.
-  uint32_t reportTimeMs();
-  uint32_t reportAgeMs();
+  // Warning: do not use for one-liner age computation (e.g. `micros() - getFrameTimeUs()`). micros() may be
+  // called first, and getFrameTimeUs() may return a greater value leading to overflow.
+  uint32_t reportTimeUs();
+  uint32_t reportAgeUs();
 
   double leftStickX();
   double leftStickY();
@@ -42,7 +42,7 @@ class DualsenseParser {
 
  private:
   volatile dualsense_input_report last_report;
-  volatile uint32_t last_report_ms = 0;
+  volatile uint32_t last_report_us = 0;
 
   void writeReport(const void* data);
 };

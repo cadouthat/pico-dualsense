@@ -34,7 +34,7 @@ int main() {
   while (1) {
     dualsense_auto_connect(remote_addr);
 
-    uint32_t now_ms = to_us_since_boot(get_absolute_time());
+    uint32_t now_ms = to_ms_since_boot(get_absolute_time());
     if (now_ms - last_print_ms > 100) {
       if (dualsense_parser.crossPressed()) {
         printf("X is pressed\n");

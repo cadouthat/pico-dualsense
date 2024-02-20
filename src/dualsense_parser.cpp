@@ -22,20 +22,20 @@ bool DualsenseParser::parseReport(uint8_t *packet, uint16_t size) {
   if (packet[0] != DUALSENSE_INPUT_REPORT_HEADER || packet[1] != DUALSENSE_INPUT_REPORT_ID) {
     return false;
   }
-  last_report_ms = to_ms_since_boot(get_absolute_time());
+  last_report_us = to_us_since_boot(get_absolute_time());
   writeReport(packet);
   return true;
 }
 
 bool DualsenseParser::hasReport() { return last_report.header == DUALSENSE_INPUT_REPORT_HEADER; }
-uint32_t DualsenseParser::reportTimeMs() { return last_report_ms; }
-uint32_t DualsenseParser::reportAgeMs() {
+uint32_t DualsenseParser::reportTimeUs() { return last_report_us; }
+uint32_t DualsenseParser::reportAgeUs() {
   if (!hasReport()) {
     return UINT32_MAX;
   }
   // Grab a snapshot of the volatile value, to ensure it does not update after we fetch the time
-  uint32_t last_ms = last_report_ms;
-  return to_ms_since_boot(get_absolute_time()) - last_ms;
+  uint32_t last_us = last_report_us;
+  return to_us_since_boot(get_absolute_time()) - last_us;
 }
 
 double DualsenseParser::leftStickX() { return getAnalog(last_report.left_stick_x); }

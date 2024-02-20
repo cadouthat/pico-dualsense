@@ -35,7 +35,7 @@ uint32_t DualsenseParser::reportAgeUs() {
   }
   // Grab a snapshot of the volatile value, to ensure it does not update after we fetch the time
   uint32_t last_us = last_report_us;
-  return to_ms_since_boot(get_absolute_time()) - last_us;
+  return to_us_since_boot(get_absolute_time()) - last_us;
 }
 
 double DualsenseParser::leftStickX() { return getAnalog(last_report.left_stick_x); }
